@@ -37,6 +37,19 @@
           <% end %></td>
         </tr>
       </table>
+      <div>
+          <p>コメント数：<%= @book.book_comments.count %></p>
+          <% @book.book_comments.each do |book_comment| %>
+            <p><%= image_tag book_comment.user.get_profile_image(100,100) %></p>
+            <%= book_comment.user.name %>
+          <% end %>
+        </div>
+        <div>
+          <%= form_with model: [@book, @book_comment] do |f| %>
+            <%= f.text_area :comment %>
+            <%= f.submit "送信" %>
+          <% end %>
+        </div>
     </div>
   </div>
 </div>
