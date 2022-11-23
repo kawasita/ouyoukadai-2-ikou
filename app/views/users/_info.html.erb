@@ -9,31 +9,21 @@
 	  <th><%= user.introduction %></th>
   </tr>
   <tr>
-    <th>follows
-      <%= link_to user_followings_path(user.id) do %>
-        <%= " #{user.active_relationships.count}" %>
-      <% end %>
-    </th>
+    <th>follows</th>
+    <th><%= link_to user.followings.count, user_followings_path(user) %></th>
   </tr>
   <tr>
-    <th>followers
-      <%= link_to user_followers_path(user.id) do %>
-        <%= " #{user.passive_relationships.count}" %>
-      <% end %>  
-    </th>
+    <th>followers</th>
+    <th><%= link_to user.followers.count, user_followers_path(user) %></th>
   </tr>
 </table>
 
-<% unless current_page?(@user_path) %>
-  <% if current_user.following?(user) %>
-    <%= render 'relationships/follow', user: user %>
+<div class='row'>
+  <% if current_user != user %>
+    <td><%= render "relationships/btn", user: user %></td>
   <% else %>
-    <%= render 'relationships/unfollowed', user: user %>
-  <% end %>
-<% else %>
-  <div class='row'>
-    <%= link_to edit_user_path(user), class: "btn btn-outline-secondary btn-block" do %>
+    <%= link_to edit_user_path(user), class: "btn btn-outline-secondary btn-block edit_user_#{user.id}" do %>
       <i class="fas fa-user-cog"></i>
     <% end %>
-  </div>
-<% end %>
+  <% end %>
+</div>

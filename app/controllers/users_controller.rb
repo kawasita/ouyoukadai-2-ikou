@@ -15,13 +15,14 @@ class UsersController < ApplicationController
 
   def edit
     ensure_correct_user
-    @user = User.find(params[:id]) 
+    @user = User.find(params[:id])
   end
 
   def update
     @user = User.find(params[:id])
+    binding.pry
     if @user.update(user_params)
-      redirect_to user_path(@user.id), notice: "You have updated user successfully."
+      redirect_to user_path(@user), notice: "You have updated user successfully."
     else
       render "edit"
     end
