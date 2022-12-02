@@ -8,10 +8,10 @@ class BookCommentsController < ApplicationController
   end
 
   def destroy
-    @comment = BookComment.find(params[:id])
+    @comment = BookComment.find(params[:book_id])
     @comment.destroy
   end
-  
+
   private
   def book_comment_params
     params.require(:book_comment).permit(:comment)
