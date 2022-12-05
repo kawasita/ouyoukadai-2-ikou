@@ -11,6 +11,7 @@
       <h2>Books</h2>
       <%= render 'books/index',books: @books %>
       <%= render 'books/book-count',today_book: @today_book, yesterday_book: @yesterday_book, this_week_book: @this_week_book, last_week_book: @last_week_book %>
+      <%= render 'books/book-count-detail', books: @books, yesterday_book: @yesterday_book, today_book: @today_book %>
     </div>
   </div>
 </div>
