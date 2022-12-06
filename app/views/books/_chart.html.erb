@@ -1,17 +1,16 @@
-<canvas id="myChart_2" width="200" height="48"></canvas>
-      <script>
-        var ctx = document.getElementById("myChart_2").getContext('2d');
-        var myChart = new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: ['6日前', '5日前', '4日前','3日前', '2日前', '1日前', '今日'],
-                datasets: [{
-                    label: "投稿数",
-                    data: <%= books.past_week_count %>,
-                    backgroundColor: 'rgba(30, 144, 255, 0.5)',
-                    borderColor: 'rgba(30, 144, 255, 0.5)',
-                    fill: false}
-                }]
-            },
-        });
-      </script>
+<canvas id="myChart" width="300" height="100"> </canvas>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+var ctx = document.getElementById("myChart").getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: ['6日前', '5日前', '4日前', '3日前', '2日前', '1日前', '今日'],
+        datasets: [{
+            label: "投稿した本の数",
+            data: <%= books.past_week_count %>,
+            fill: false
+        }]
+    },
+});
+</script>
