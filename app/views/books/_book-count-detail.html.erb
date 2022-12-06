@@ -2,24 +2,24 @@
 <table class="table table-bordered">
   <thead>
     <tr>
-      <th>６日前</th>
+      <th>6日前</th>
       <th>5日前</th>
       <th>4日前</th>
       <th>3日前</th>
-      <th>２日前</th>
+      <th>2日前</th>
       <th>昨日</th>
       <th>今日</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th><%= books.created_6days.count %></th>
-      <th><%= books.created_5days.count %></th>
-      <th><%= books.created_4days.count %></th>
-      <th><%= books.created_3days.count %></th>
-      <th><%= books.created_2days.count %></th>
-      <th><%= yesterday_book.count %></th>
-      <th><%= today_book.count %></th>
+      <td><%= books.created_days_ago(6).count %></td>
+      <td><%= books.created_days_ago(5).count %></td>
+      <td><%= books.created_days_ago(4).count %></td>
+      <td><%= books.created_days_ago(3).count %></td>
+      <td><%= books.created_days_ago(2).count %></td>
+      <td><%= books.created_days_ago(1).count %></td>
+      <td><%= books.created_days_ago(0).count %></td>
     </tr>
   </tbody>
 </table>
