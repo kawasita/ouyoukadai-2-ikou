@@ -9,8 +9,23 @@ var myChart = new Chart(ctx, {
         datasets: [{
             label: "投稿した本の数",
             data: <%= books.past_week_count %>,
+            tension: 0.5,
             fill: false
         }]
     },
-});
+
+    options: {
+        scales: {
+          y: {
+            display: true,
+            suggestedMin: 0,
+            suggestedMax: 10,
+            beginAtZero: true,
+            ticks: {
+              stepSize: 1,
+            }
+          }
+        }
+    }
+});                  
 </script>
