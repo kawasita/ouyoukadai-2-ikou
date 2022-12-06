@@ -10,13 +10,14 @@
     </thead>
     <tbody>
       <tr>
-        <td><%= today_book.count %></td>
+        <td><%= books.created_days_ago(0).count %></td>
         <td><%= books.created_days_ago(1).count %></td>
         <td>
           <% if books.created_days_ago(1).count == 0 %>
           前日の投稿はありません
           <% else %>
-         　<% today_book.count / books.created_days_ago(1).count * 100 %>%
+         　<% the_day_before = books.created_days_ago(0).count / books.created_days_ago(1).count %>
+         　<%= (the_day_before * 100).round %>%
           <% end %>
         </td>
       </tr>
