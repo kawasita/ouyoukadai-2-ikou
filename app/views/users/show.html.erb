@@ -10,9 +10,7 @@
     <div class='col-md-8 offset-md-1'>
       <h2>Books</h2>
       <%= render 'books/index',books: @books %>
-      <%= render 'books/book-count', books: @books, today_book: @today_book, this_week_book: @this_week_book, last_week_book: @last_week_book %>
-      <%= render 'books/book-count-detail', books: @books, yesterday_book: @yesterday_book, today_book: @today_book %>
-      <%= render 'books/chart', books: @books %>
+      <%= render 'books/book-count', books: @books, this_week_book: @this_week_book, last_week_book: @last_week_book %>
     </div>
   </div>
 </div>

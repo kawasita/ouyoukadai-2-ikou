@@ -14,9 +14,9 @@
         <td><%= books.created_days_ago(1).count %></td>
         <td>
           <% if books.created_days_ago(1).count == 0 %>
-          前日の投稿はありません
+          前日の投稿が0のため計算できません
           <% else %>
-         　<% the_day_before = books.created_days_ago(0).count / books.created_days_ago(1).count %>
+         　<% the_day_before = books.created_days_ago(0).count / books.created_days_ago(1).count.to_f %>
          　<%= (the_day_before * 100).round %>%
           <% end %>
         </td>
@@ -36,7 +36,7 @@
         <td><%= this_week_book.count %></td>
         <td><%= last_week_book.count %></td>
         <td><% if last_week_book.count == 0 %>
-              先週の投稿はありません
+              前週の投稿が0のため計算できません
             <% else %>
               <% this_week_book.count / last_week_book.count * 100 %>%
             <% end %></td>
@@ -44,3 +44,60 @@
     </tbody>
   </table>
 </div>
+<h4>7日間分の投稿数</h4>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>6日前</th>
+      <th>5日前</th>
+      <th>4日前</th>
+      <th>3日前</th>
+      <th>2日前</th>
+      <th>昨日</th>
+      <th>今日</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= books.created_days_ago(6).count %></td>
+      <td><%= books.created_days_ago(5).count %></td>
+      <td><%= books.created_days_ago(4).count %></td>
+      <td><%= books.created_days_ago(3).count %></td>
+      <td><%= books.created_days_ago(2).count %></td>
+      <td><%= books.created_days_ago(1).count %></td>
+      <td><%= books.created_days_ago(0).count %></td>
+    </tr>
+  </tbody>
+</table>
+<div class = text-center>7日間の投稿数の比較</div>
+<canvas id="myChart" width="300" height="100"> </canvas>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+var ctx = document.getElementById("myChart").getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: ['6日前', '5日前', '4日前', '3日前', '2日前', '1日前', '今日'],
+        datasets: [{
+            label: "投稿した本の数",
+            data: <%= books.past_week_count %>,
+            tension: 0.5,
+            fill: false
+        }]
+    },
+
+    options: {
+        scales: {
+          y: {
+            display: true,
+            suggestedMin: 0,
+            suggestedMax: 10,
+            beginAtZero: true,
+            ticks: {
+              stepSize: 1,
+            }
+          }
+        }
+    }
+});                  
+</script>
