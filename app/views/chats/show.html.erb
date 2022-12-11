@@ -1,26 +1,29 @@
-<h2><%= @user.name %>さんとのチャット</h2>
-<% @chats.each do |chats| %>
-<% if chat.user_id == current_user.id %>
-  <tbody>
-    <tr>
-      <th>
-        <p style="text-align: left;"><%= chat.message %></p>
-      </th>
-      <th></th>
-    </tr>
-  <% else %>
-    <tr>
-      <th></th>
-      <th>
-        <p style="text-align: right;"><%= chat.message %></p>
-      </th>
-    </tr>
-  </tbody>
-  <% end %>
-<% end %>
 
-<%= form_with model: @chat, local: false do |f| %>
-  <%= f.text_field :message %>
-  <%= f.hidden_field :room_id %>
-  <%= f.submit "SEND", class:"btn btn-sm btn-success chat-btn" %>
-<% end %>
+
+
+<!--<h2><%#= @user.name %>さんとのチャット</h2>-->
+<!--<%# @chats.each do |chats| %>-->
+<!--<%# if chat.user_id == current_user.id %>-->
+<!--  <tbody>-->
+<!--    <tr>-->
+<!--      <th>-->
+<!--        <p style="text-align: left;"><%#= chat.message %></p>-->
+<!--      </th>-->
+<!--      <th></th>-->
+<!--    </tr>-->
+<!--  <%# else %>-->
+<!--    <tr>-->
+<!--      <th></th>-->
+<!--      <th>-->
+<!--        <p style="text-align: right;"><%#= chat.message %></p>-->
+<!--      </th>-->
+<!--    </tr>-->
+<!--  </tbody>-->
+<!--  <#% end %>-->
+<!--<%# end %>-->
+
+<!--<%#= form_with model: @chat, local: false do |f| %>-->
+<!--  <%#= f.text_field :message %>-->
+<!--  <%#= f.hidden_field :room_id %>-->
+<!--  <%#= f.submit "SEND", class:"btn btn-sm btn-success chat-btn" %>-->
+<!--<%# end %>-->
