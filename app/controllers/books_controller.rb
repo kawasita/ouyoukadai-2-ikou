@@ -1,4 +1,6 @@
 class BooksController < ApplicationController
+  before_action :authenticate_user!
+  before_action :ensure_correct_user, only: [:edit, :update, :destroy]
 
   def show
     @book = Book.find(params[:id])
@@ -26,11 +28,6 @@ class BooksController < ApplicationController
       #}.reverse
 
     @book = Book.new
-    @book_detail = Book.find(params[:id])
-    unless ViewCount.find_by(user_id: current_user.id, book_id: @book_detail.id)
-      current_user.view_counts.create(book_id: @book_detail.id)
-    end
-
   end
 
   def create
@@ -72,5 +69,12 @@ class BooksController < ApplicationController
 
   def book_params
     params.require(:book).permit(:title, :body)
+  end
+
+  def ensure_correct_user
+    @book = Book.find(params[:id])
+    unless @book.user == current_user
+      redirect_to books_path
+    end
   end
 end
